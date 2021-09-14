@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.mattmx.teamsplus.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "plugin": "com.mattmx.teamsplus.Main",
+  "mixins": [
+  ],
+  "client": [
+    "PlayerRenderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
