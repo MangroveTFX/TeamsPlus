@@ -46,15 +46,17 @@ public class RegisteredPlayer {
     public static void beginRepeat() {
         final int[] timer = {1};
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (timer[0] % 6000 == 0) {
-                getAll();
-                timer[0] = 1;
+            if (Main.OPTIONS.settings.RELOAD_AUTOMATICALLY) {
+                if (timer[0] % 6000 == 0) {
+                    getAll();
+                    timer[0] = 1;
+                }
+                timer[0]++;
             }
-            timer[0]++;
         });
     }
 
-    public static String str_URL = "https://pastebin.com/raw/rX8eXncq";
+    public static String str_URL = "https://gist.github.com/MangroveTFX/bc8785db599d7d4291b8789d19896f67";
 
     public static String getPlayer(String name) {
         for (RegisteredPlayer player : PLAYERS) {
@@ -71,25 +73,27 @@ public class RegisteredPlayer {
         try {
             url = new URL(str_URL);
         } catch (MalformedURLException e) {
-            System.out.println("ERROR: COULD NOT GET URL " + str_URL + " THIS MAY BE AN ERROR WITH PASTEBIN.");
+            System.out.println("ERROR: COULD NOT GET URL " + str_URL + " THIS MAY BE AN ERROR WITH GIST.");
             e.printStackTrace();
         }
         if (url == null) {
-            System.out.println("ERROR: COULD NOT GET URL " + str_URL + " THIS MAY BE AN ERROR WITH PASTEBIN.");
+            System.out.println("ERROR: COULD NOT GET URL " + str_URL + " THIS MAY BE AN ERROR WITH GIST.");
             return;
         }
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
             String line = in.readLine();
             while (line != null) {
-                if (!(line.startsWith("#") || line.isEmpty())) {
+                if (line.matches("^.+&#39;\\w{3,16}: .+$")) {
+                    line = Utils.formatFromHTML(line);
+                    line = line.split("'")[1];
                     String[] args = line.split(": ");
                     PLAYERS.add(new RegisteredPlayer(args[0], args[1]));
                 }
                 line = in.readLine();
             }
         } catch (IOException e) {
-            System.out.println("ERROR: COULD NOT GET URL " + str_URL + " THIS MAY BE AN ERROR WITH PASTEBIN.");
+            System.out.println("ERROR: COULD NOT GET URL " + str_URL + " THIS MAY BE AN ERROR WITH GIST.");
             e.printStackTrace();
         }
         System.out.println("Successfully synced player-data with " + PLAYERS.size() + " entries total.");

@@ -30,12 +30,12 @@ public class PlayerRenderMixin<T extends Entity> {
         display = Utils.chat(teamTag);
         if (!(d > 4096.0D)) {
             boolean bl = !entity.isSneaky();
-            float f = entity.getHeight() + Main.OPTIONS.TEAM_NAME_GAP;
+            float f = entity.getHeight() + Main.OPTIONS.settings.TEAM_GAP_SIZE;
             int i = 0;
             matrices.push();
             matrices.translate(0.0D, (double)f, 0.0D);
             matrices.multiply(this.dispatcher.getRotation());
-            matrices.scale(-Main.OPTIONS.TEAM_NAME_SIZE, -Main.OPTIONS.TEAM_NAME_SIZE, -Main.OPTIONS.TEAM_NAME_SIZE);
+            matrices.scale(-Main.OPTIONS.settings.TEAM_NAME_SIZE, -Main.OPTIONS.settings.TEAM_NAME_SIZE, -Main.OPTIONS.settings.TEAM_NAME_SIZE);
             Matrix4f matrix4f = matrices.peek().getModel();
             TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
             float h = (float)(-textRenderer.getWidth(display) / 2);

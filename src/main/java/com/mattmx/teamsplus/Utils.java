@@ -12,4 +12,9 @@ public class Utils {
     public static void playsound(SoundEvent sound, float pitch, float vol){
         MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(sound,pitch,vol));
     }
+    public static String formatFromHTML(String str) {
+        return str.replace("&#39;", "'")
+                .replace("&amp;", "&")
+                .replace("</td>", "");
+    }
 }

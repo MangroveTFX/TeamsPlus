@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "com.mattmx.teamsplus.Main"
+    ],
+    "modmenu": [
+      "com.mattmx.teamsplus.modmenu.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -24,7 +27,9 @@
   "depends": {
     "fabricloader": ">=0.11.6",
     "fabric": "*",
-    "minecraft": "1.17.1"
+    "minecraft": "1.17.1",
+    "cloth-config2": "5.0.x",
+    "modmenu": "2.0.x"
   },
   "suggests": {
     "another-mod": "*"
