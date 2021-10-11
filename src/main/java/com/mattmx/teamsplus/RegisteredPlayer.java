@@ -56,7 +56,7 @@ public class RegisteredPlayer {
         });
     }
 
-    public static String str_URL = "https://gist.github.com/MangroveTFX/bc8785db599d7d4291b8789d19896f67";
+    public static String str_URL = "https://gist.github.com/Matt-MX/bc8785db599d7d4291b8789d19896f67";
 
     public static String getPlayer(String name) {
         for (RegisteredPlayer player : PLAYERS) {
